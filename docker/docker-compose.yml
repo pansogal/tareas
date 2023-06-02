@@ -12,8 +12,8 @@ services:
       MYSQL_USER: "cakeuser"
       MYSQL_PASSWORD: "cakepass"
     volumes:
-    #- ./mariadb_data:/var/lib/mysql:rw
     - ./basetareas.sql:/docker-entrypoint-initdb.d/basetareas.sql
+    - ./mariadb_data:/var/lib/mysql:rw
 
   webtareas3:
     image: httpd:2.4
