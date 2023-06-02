@@ -1,6 +1,6 @@
 # Tareas
 
-Tareas es una aplicación LAMP/CRUD con NodeJS
+Tareas es una aplicación web de tipo LAMP/CRUD con NodeJS y Milligram CSS
 
 LAMP = Linux, Apache, MariaDB, PHP8
 
@@ -60,5 +60,9 @@ La ejecución de "docker ps"debería reflejar algo como ésto:
 
 Como se puede observar, el servidor apache escucha en el puerto 8801, y la aplicación web es accesible en el enlace http://localhost:8801
 
+# Ajuste fino
 
+El ajuste fino de la instalación se logra editando los scripts "docker-compose.yml", "inicial_db/Dockerfile" y "inicial_web/Dockerfile".
+
+## Editando docker-compose.yml
 
