@@ -12,7 +12,10 @@ Para más detalle, me remito a la documentación.
 
 # Instalación
 
-Descarga:
+#PASO 1 : Descarga
+
+OPCION 1: Descarga el ZIP de esta web, descomprime el archivo en un directorio
+OPCION 2 (recomendada): Ejecutar "git clone https://github.com/pansogal/tareas.git" (sin las comillas) en un terminal.
 
 
 
