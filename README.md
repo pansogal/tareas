@@ -6,8 +6,9 @@ LAMP = Linux, Apache, MariaDB, PHP8
 
 Como framework usa CakePHP 4 https://github.com/cakephp/cakephp
 
-El objeto de esta aplicación es organizar el trabajo de unos técnicos de diferentes delegaciones de una empresa de manera que las tareas que realicen nrelacionadas con diferentes proyectos estén coordinadas. 
+El objeto de esta aplicación es organizar el trabajo de unos técnicos de diferentes delegaciones de una empresa de manera que las tareas que realicen relacionadas con diferentes proyectos estén coordinadas. 
 
+La aplicación requiere la autentificación de cada usuario y, dependiendo de qué usuario sea, tiene autorización para ver o actualizar los datos que se le permitan en base a un control de autorizaciones.
 
 La aplicación guarda notas de cada tarea realizada y guarda también archivos que se requieran para considerar la tarea completada. 
 Para más detalle, me remito a la documentación. 
@@ -66,5 +67,14 @@ Como se puede observar, el servidor apache escucha en el puerto 8801, y la aplic
 
 El ajuste fino de la instalación se logra editando los scripts "docker-compose.yml", "inicial_db/Dockerfile" y "inicial_web/Dockerfile".
 
+
 ## Editando docker-compose.yml
+
+En este archivo podemos cambiar los nombres de las imágenes y los containers. Podemos cambiar el usuario y pass de la base de datos.
+
+En caso de cambiar de nombre un servicio, tenemos que cambiar ese mismo nombre en aquellos otros servicios que refieran a éste (sección "depends_on"). 
+
+En caso de cambiar el nombre "basetareaspng" debemos cambiarlo también en "inicial_web/app_local.php"
+
+## Editando inicial_db/Dockerfile
 
