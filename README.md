@@ -12,7 +12,7 @@ Para más detalle, me remito a la documentación.
 
 # Instalación
 
-# PASO 1 : Descarga
+## PASO 1 : Descarga
 
 OPCION 1: Descarga el ZIP de esta web, descomprime el archivo en un directorio
 
