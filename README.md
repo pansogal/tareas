@@ -21,7 +21,9 @@ OPCION 2 (recomendada): Ejecutar "git clone https://github.com/pansogal/tareas.g
 
 ## PASO 2 : Generación de container Docker 
 
-El código se distribuye containerizado, bajo Docker. De esta manera la aplicación no altera tu sistema operativo y se ejecuta en un sandbox.
+No voy a documentar la instalación bajo sistema operativo Windows de Docker y Docker-compose. Existe documentación sobre ello en la red. 
+
+El código se distribuye containerizado, bajo Docker. De esta manera la aplicación no altera tu sistema operativo y se ejecuta en un sandbox.Docker permite hacer pruebas limpiamente, facilitando probar diferentes configuraciones y pudiendo borrar aquello que ya no resulte útil de forma cómoda.
 
 Es necesario disponer de un sistema Linux al cual se le haya instalado Docker y Docker-Compose previamente. 
 
