@@ -4,15 +4,9 @@
  * @var \App\Model\Entity\Delegacione[]|\Cake\Collection\CollectionInterface $delegaciones
  */
 ?>
-<style>
-	.verde{
-		color: darkgreen;
-	}
-	.rojo{
-		color: red;
-	}
-</style>
-<h3 class='rojo'>Configuración: Delegaciones</h3>
+
+<h3 style='color:red'>Configuración: Delegaciones</h3>
+
 <div class="row">
 	<?= $this->Html->link('Técnicos', ['controller'=>'Tecnicos','action' => 'index'], ['class' => 'button2 float-right']) ?>
 	<?= $this->Html->link('Tareas', ['controller'=>'Tareas','action' => 'index'], ['class' => 'button2 float-right']) ?>

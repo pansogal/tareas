@@ -5,52 +5,58 @@
  */
 ?>
 <div class="acciones index content">
-    <?= $this->Html->link(__('New Accione'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Acciones') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('avance_id') ?></th>
-                    <th><?= $this->Paginator->sort('accion') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th><?= $this->Paginator->sort('realizada') ?></th>
-                    <th><?= $this->Paginator->sort('iniciada') ?></th>
-                    <th><?= $this->Paginator->sort('finalizada') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($acciones as $accione): ?>
-                <tr>
-                    <td><?= $this->Number->format($accione->id) ?></td>
-                    <td><?= $accione->has('avance') ? $this->Html->link($accione->avance->avance, ['controller' => 'Avances', 'action' => 'view', $accione->avance->id]) : '' ?></td>
-                    <td><?= h($accione->accion) ?></td>
-                    <td><?= h($accione->created) ?></td>
-                    <td><?= h($accione->modified) ?></td>
-                    <td><?= h($accione->realizada) ?></td>
-                    <td><?= h($accione->iniciada) ?></td>
-                    <td><?= h($accione->finalizada) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $accione->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accione->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $accione->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accione->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
-    </div>
+	<h3><?= 'Acciones en curso' ?></h3>
+	<div class='leyenda'>Leyenda: 
+		<span class='rojo' title='La acción necesita otras para empezar.'>Esperando</span>
+		<span class='naranja' title='La acción puede empezar, pero no ha empezado aún.'>Lista para empezar</span>
+		<span class='ama' title='La acción ya está en marcha.'>En marcha</span>
+		<span class='verde' title='La acción fue compoletada.'>Completada</span>
+	</div>
+	<div class="table-responsive">
+		<table>
+			<thead>
+				<tr>
+					<th> <?= $this->Paginator->sort('proyectos') ?> </th>
+					<th>En curso</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($actis as $acti): ?>
+				<tr>
+					<td>
+				  <?= $this->Html->link( $acti->corto, ['controller'=>'Proyectos', 'action' => 'view', $acti->id], ['title'=> $acti->proyecto." - ".$acti->lugar, 'class' => 'button3']) ?>
+					</td>
+					<td>
+				  <?php foreach ($acti->avances as $av): ?>
+					<?php foreach ($av->acciones as $acc): ?>
+						<?php 
+							if($acc->luzverde && !$acc->realizada){
+								echo "<b>".$acc->code."</b> ".$this->Html->link($acc->accion, ['controller' => 'Acciones', 'action' => 'edit', $acc->id, $acti->id], [
+									'class' => 'button3 '.$acc->color,
+									'title' =>$acc->descripcion,
+								]);
+								foreach($acc->tecnicos as $tt){
+									echo  $tt->nombre.' ';
+								}
+								echo '<br />';
+							} 
+						?> 
+					<?php endforeach; ?>
+				  <?php endforeach; ?>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+	<div class="paginator">
+		<ul class="pagination">
+			<?= $this->Paginator->first('<< ' . __('first')) ?>
+			<?= $this->Paginator->prev('< ' . __('previous')) ?>
+			<?= $this->Paginator->numbers() ?>
+			<?= $this->Paginator->next(__('next') . ' >') ?>
+			<?= $this->Paginator->last(__('last') . ' >>') ?>
+		</ul>
+		<p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+	</div>
 </div>

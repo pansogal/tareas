@@ -5,12 +5,6 @@
  */
 ?>
 <style>
-	.verde{
-		color: darkgreen;
-	}
-	.rojo{
-		color: red;
-	}
 	.tinfo{
 		background-color: darkgreen;
 		color: white;
@@ -23,7 +17,7 @@
 		cursor:help;
 	}
 </style>
-<h3 class='rojo'>Configuración: Avances</h3>
+<h3 style='color:red'>Configuración: Avances</h3>
 <div class="row">
 	<?= $this->Html->link('Técnicos', ['controller'=>'Tecnicos','action' => 'index'], ['class' => 'button2 float-right']) ?>
 	<?= $this->Html->link('Tareas', ['controller'=>'Tareas','action' => 'index'], ['class' => 'button2 float-right']) ?>
@@ -47,10 +41,10 @@
 	}
 ?>
 
-<span class='verde'>Los avances son agrupaciones de tareas para todos los proyectos que luego serán acciones en cada proyecto concreto.</span><br />
-<span class='verde'>Los avances suponen un hito conseguido cuando se finalizan.</span><br />
-<span class='verde'>Modifique o cree los avances y asígnele las tareas que no estén ya asignadas a otros avances.</span><br />
-<span class='verde'>Dos avances o más pueden avanzar en paralelo, por ser hijos de otro avance anterior, por ejemplo 'Acopios' y 'PRL'.</span>
+<span style='color:green'>Los avances son agrupaciones de tareas para todos los proyectos que luego serán acciones en cada proyecto concreto.</span><br />
+<span style='color:green'>Los avances suponen un hito conseguido cuando se finalizan.</span><br />
+<span style='color:green'>Modifique o cree los avances y asígnele las tareas que no estén ya asignadas a otros avances.</span><br />
+<span style='color:green'>Dos avances o más pueden avanzar en paralelo, por ser hijos de otro avance anterior, por ejemplo 'Acopios' y 'PRL'.</span>
 
 <div class="row">
 	<div class="column-responsive column-25">

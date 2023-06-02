@@ -6,30 +6,65 @@ namespace App\Controller;
 
 class UsersController extends AppController
 {
-	/**
-	 * Index method
-	 *
-	 * @return \Cake\Http\Response|null|void Renders view
-	 */
 	public function index()
 	{
 		$this->Authorization->skipAuthorization(); // no Auth
 
 		$this->paginate = [
-			'contain' => ['Tecnicos'],
+			'contain' => ['Tecnicos', 'Tecnicos.Delegaciones'],
 		];
 		$users = $this->paginate($this->Users);
 
 		$this->set(compact('users'));
 	}
+	
+	// devuelve el técnico correspondiente al user logeado
+	private function dameUserTec(){
+		$user = $this->request->getAttribute('identity');
+	
+		$this->loadModel('Users');
+		$miquery = $user->applyScope('tecnico', $this->Users->find('all',  [
+			'contain' => ['Tecnicos'],
+		]));
+		$datos = $miquery->first();
+		$tecnico = $datos->tecnico;
+		
+		return $tecnico;
+	}
+	
+	// Panel de control del usuario logeado
+	public function panel($f1 = null, $f1d=null,$f2 = null, $f2d=null){
+		$usr = $this->request->getAttribute('identity');
+		$usr->tech = $this->dameUserTec();
 
-	/**
-	 * View method
-	 *
-	 * @param string|null $id User id.
-	 * @return \Cake\Http\Response|null|void Renders view
-	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-	 */
+		// filtros
+		if( !is_null($f1) && !is_null($f1d)){
+			if( $f1 == 'proy'){
+				$this->set('proy', $f1d); 
+				$usr->tech->proy = $f1d;
+				$this->loadModel('Proyectos');
+				$pr = $this->Proyectos->get($f1d);
+				$this->set('pr', $pr); 
+			}
+			if( $f1 == 'luzverde')  $usr->tech->luzverde = $f1d;
+			if( $f1 == 'iniciada')  $usr->tech->iniciada = $f1d;
+			if( $f1 == 'finalizada')  $usr->tech->finalizada = $f1d;
+		}
+		if( !is_null($f2) && !is_null($f2d)){
+			if( $f2 == 'luzverde') $usr->tech->luzverde = $f2d;
+			if( $f2 == 'iniciada')  $usr->tech->iniciada = $f2d;
+			if( $f2 == 'finalizada')  $usr->tech->finalizada = $f2d;
+		}
+		// tareas
+		$this->loadModel('Implicados');
+		
+		$query = $usr->applyScope('panel', $this->Implicados->find('all',  [
+			'contain' => ['Acciones','Acciones.Avances','Acciones.Avances.Proyectos', 'Tecnicos'],
+		]));
+		$implicas = $this->paginate($query);
+		$this->set(compact( 'usr','implicas'));
+	}
+
 	public function view($id = null)
 	{
 		$user = $this->Users->get($id, [
@@ -39,11 +74,6 @@ class UsersController extends AppController
 		$this->set(compact('user'));
 	}
 
-	/**
-	 * Add method
-	 *
-	 * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-	 */
 	public function add()
 	{
 		$user = $this->Users->newEmptyEntity();
@@ -63,13 +93,6 @@ class UsersController extends AppController
 		$this->set(compact('user', 'tecnicos'));
 	}
 
-	/**
-	 * Edit method
-	 *
-	 * @param string|null $id User id.
-	 * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-	 */
 	public function edit($id = null)
 	{
 		$user = $this->Users->get($id, [
@@ -92,17 +115,11 @@ class UsersController extends AppController
 		$this->set(compact('user', 'tecnicos'));
 	}
 
-	/**
-	 * Delete method
-	 *
-	 * @param string|null $id User id.
-	 * @return \Cake\Http\Response|null|void Redirects to index.
-	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-	 */
 	public function delete($id = null)
 	{
 		$this->request->allowMethod(['post', 'delete']);
 		$user = $this->Users->get($id);
+		$this->Authorization->authorize($user);
 		if ($this->Users->delete($user)) {
 			$this->Flash->success(__('The user has been deleted.'));
 		} else {
@@ -138,7 +155,7 @@ class UsersController extends AppController
 		}
 		// display error if user submitted and authentication failed
 		if ($this->request->is('post') && !$result->isValid()) {
-				$this->Flash->error(__('Invalid username or password'));
+				$this->Flash->error(__('email/contraseña incorrectos'));
 		}
 	}
 	

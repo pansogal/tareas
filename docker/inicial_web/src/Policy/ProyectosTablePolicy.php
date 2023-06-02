@@ -15,4 +15,13 @@ class ProyectosTablePolicy
 	{
 		return $query;
 	}
+
+	public function scopeActividades($user, $query)
+	{
+		if($user->tecnico->central ||  $user->getIdentifier() === 1) return $query;
+		return $query->where( 
+				[ 'delegacione_id'=>$user->tecnico->delegacione_id]
+			);
+	}
+
 }

@@ -4,18 +4,8 @@
  * @var \App\Model\Entity\Tecnico[]|\Cake\Collection\CollectionInterface $tecnicos
  */
 ?>
-<style>
-	.peque{
-		font-size: smaller;
-	}
-	.verde{
-		color: darkgreen;
-	}
-	.rojo{
-		color: red;
-	}
-</style>
-<h3 class='rojo'>Configuración: Técnicos</h3>
+
+<h3 style='color:red'>Configuración: Técnicos</h3>
 <div class="row">
 	<?= $this->Html->link('Tareas', ['controller'=>'Tareas','action' => 'index'], ['class' => 'button2 float-right']) ?>
 	<?= $this->Html->link('Delegaciones', ['controller'=>'Delegaciones','action' => 'index'], ['class' => 'button2 float-right']) ?>

@@ -12,7 +12,7 @@
 			<thead>
 				<tr>
 					<th><?= $this->Paginator->sort('usuario') ?></th>
-					<th>Técnico</th>
+					<th>Técnico / Delegación</th>
 					<th><?= $this->Paginator->sort('email') ?></th>
 					<th><?= $this->Paginator->sort('created') ?><br />
 					<?= $this->Paginator->sort('modified') ?></th>
@@ -23,7 +23,9 @@
 				<?php foreach ($users as $user): ?>
 				<tr>
 					<td><?= $user->usuario ?></td>
-					<td><?= $user->has('tecnico') ? $user->tecnico->nombre : '' ?></td>
+					<td><?= $user->has('tecnico') ? $user->tecnico->nombre : '' ?><br />
+						<?= $user->has('tecnico') ?  "<span class='peque'>".$user->tecnico->delegacione->delegacion."</span>" : '' ?>
+					</td>
 					<td><?= h($user->email) ?></td>
 					<td><?= h($user->created) ?><br />
 					<?= h($user->modified) ?></td>

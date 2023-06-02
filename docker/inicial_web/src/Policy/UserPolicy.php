@@ -30,11 +30,10 @@ class UserPolicy
 	{
 		return true;
 	}
-	
-/*	protected function isAdmin(IdentityInterface $user,  User $resource)
-	{
-	
-		return $user->getIdentifier() === 1;
+
+	public function canPanel(IdentityInterface $user, User $resource){
+		return $user->getIdentifier() !== null;
 	}
-	*/
+	
+
 }

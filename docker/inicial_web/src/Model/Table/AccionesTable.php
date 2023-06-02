@@ -33,6 +33,10 @@ class AccionesTable extends Table
         $this->hasMany('Implicados', [
             'foreignKey' => 'accione_id',
         ]);
+        $this->hasMany('Notas', [
+            'foreignKey' => 'accione_id',
+        ]);
+
         
          $this->belongsToMany('Tecnicos', ['joinTable' => 'Implicados']);
     }
@@ -64,6 +68,10 @@ class AccionesTable extends Table
         $validator
             ->boolean('realizada')
             ->notEmptyString('realizada');
+
+        $validator
+            ->boolean('luzverde')
+            ->notEmptyString('luzverde');
 
         $validator
             ->date('iniciada')
