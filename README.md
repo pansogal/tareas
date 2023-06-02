@@ -19,7 +19,7 @@ Para más detalle, me remito a la documentación.
 
 OPCION 1: Descarga el ZIP de esta web, descomprime el archivo en un directorio
 
-OPCION 2 (recomendada): Ejecutar "git clone https://github.com/pansogal/tareas.git" (sin las comillas) en un terminal.
+OPCION 2: (recomendada): Ejecutar "git clone https://github.com/pansogal/tareas.git" (sin las comillas) en un terminal.
 
 
 ## PASO 2 : Generación de container Docker 
@@ -63,7 +63,7 @@ La ejecución de "docker ps"debería reflejar algo como ésto:
 
 Como se puede observar, el servidor apache escucha en el puerto 8801, y la aplicación web es accesible en el enlace http://localhost:8801
 
-# Ajuste fino
+# Ajuste fino (para manos expertas)
 
 El ajuste fino de la instalación se logra editando los scripts "docker-compose.yml", "inicial_db/Dockerfile" y "inicial_web/Dockerfile".
 
@@ -74,7 +74,30 @@ En este archivo podemos cambiar los nombres de las imágenes y los containers. P
 
 En caso de cambiar de nombre un servicio, tenemos que cambiar ese mismo nombre en aquellos otros servicios que refieran a éste (sección "depends_on"). 
 
-En caso de cambiar el nombre "basetareaspng" debemos cambiarlo también en "inicial_web/app_local.php"
+En caso de cambiar el nombre "dbtareaspng" debemos cambiarlo también en "inicial_web/app_local.php" ya que este dato es necesario para que CakePHP se conecte a la base de datos.
 
 ## Editando inicial_db/Dockerfile
+
+Aquí podemos cambiar el repositorio de la base de datos, que es yobasystems/alpine-mariaDB 
+
+Este cambio no es crítico, muy probablemente no resultaria en incompatibilidades. Si crees que existen mejores versiones docker de MariaDB, adelante!!
+
+
+## Editando inicial_web/Dockerfile
+
+El directorio inicial_web está muy poblado, contiene muchos archivos que se han de copiar automáticamente dentro del container webtareas3. 
+
+El Script que realiza esto es "Dockerfile". Lo que hace es descargar el último Ubuntu (puedes elegir otra distribución de Linux, pero no lo recomiendo) y acto seguido:
+
+- Se instalan los paquetes que se requieren para Apache Webserver. También se instalan otros que necesito para manejarme cómodamente cuando "entramos" en el container (veremos como se hace eso en la sección "Persistencia") y, si nos fijamos, también instalamos "adminer", que es una aplicación muy útil para gobernar la base de datos.
+
+Adminer es accesible via http://localhost:8801/adminer , Denemos poner como servidor "dbtareaspng" (y no "localhost").
+
+- Luego copia algunos archivos desde inicial_web al directorio raiz de la web, dentro de webtareas3. Esos archivos los usaremos después.
+- El siguiente paso es ejecutar el script "compone webtareas3" que es un script creado por mí para poder reusar el código en otras aplicaciones. Este es el script que instala una aplicación CakePHP de nopmbre "webtareas3". Para ello usa el sistema Composer de PHP, que permite resolver las dependencias de los paquetes PHP. Es importante que esta fase se ejecute bien, ya que CakePHP es la base de toda la aplicación Tareas.
+- Luego se ejecutan unos comando de shell dentro del container webtareas3 para configurar el CakePHP recién instalado y el server Apache. 
+
+
+
+
 
