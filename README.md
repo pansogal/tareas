@@ -43,14 +43,18 @@ La ejecución de "docker images" debería reflejar algo parecido a ésto:
 
 
 > REPOSITORY                   TAG       IMAGE ID       CREATED         SIZE
+> 
 > httpd                        2.4       1248071c188b   2 weeks ago     352MB
+> 
 > mariadb                      latest    fc10eab913b0   2 weeks ago     235MB
 
 
 La ejecución de "docker ps"debería reflejar algo como ésto:
 
 >CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS         PORTS                                   NAMES
+>
 >9a14f5245f3c   httpd:2.4        "apachectl -D FOREGR…"   3 minutes ago   Up 3 minutes   0.0.0.0:8801->80/tcp, :::8801->80/tcp   webtareas3
+>
 >f3a5373a8f61   mariadb:latest   "/scripts/run.sh"        3 minutes ago   Up 3 minutes   3306/tcp                                dbtareaspng
 
 
