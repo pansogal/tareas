@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker-compose build
+docker-compose up -d
+
+#docker exec -it webbots cp -rp /var/www/html/bots/. /var/www/html/traslada
+#docker exec -it webbots rm -r /var/www/html/bots
+#docker exec -it webbots ln -s /var/www/html/traslada /var/www/html/bots
+

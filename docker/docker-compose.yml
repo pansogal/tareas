@@ -1,0 +1,31 @@
+version: '3.2'
+services:
+
+  dbtareaspng:
+    image: mariadb:latest
+    container_name: dbtareaspng
+    build: ./inicial_db
+#    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "rootpass"
+      MYSQL_DATABASE: "basetareas"
+      MYSQL_USER: "cakeuser"
+      MYSQL_PASSWORD: "cakepass"
+    volumes:
+    #- ./mariadb_data:/var/lib/mysql:rw
+    - ./basetareas.sql:/docker-entrypoint-initdb.d/basetareas.sql
+
+  webtareas3:
+    image: httpd:2.4
+    container_name: webtareas3
+    build: ./inicial_web
+#    restart: always
+    volumes:
+     - ./web3:/var/www/html/traslada
+    ports:
+      - "8801:80"
+    depends_on:
+      - dbtareaspng
+
+
+

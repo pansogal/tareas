@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cd /var/www/html
+rm -f index.html
+
+
+#mv composer.phar /usr/local/bin/composer
+
+./composer create-project --prefer-dist cakephp/app:^4.4.0 $1
+
+ln -s /var/www/html/$1/vendor/icecoder /usr/share/icecoder
+#mkdir /var/www/html/traslada
+echo "CAMBIANDO USUARIO---------------------------!!!!"
+chown www-data:www-data -R /var/www/html/$1/*
+#ln -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
+
