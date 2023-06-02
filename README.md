@@ -15,18 +15,24 @@ Para más detalle, me remito a la documentación.
 #PASO 1 : Descarga
 
 OPCION 1: Descarga el ZIP de esta web, descomprime el archivo en un directorio
+
 OPCION 2 (recomendada): Ejecutar "git clone https://github.com/pansogal/tareas.git" (sin las comillas) en un terminal.
 
 
+#PASO 2 : Generación de container Docker 
 
-El código se distribuye containerizado, bajo Docker. 
+El código se distribuye containerizado, bajo Docker. De esta manera la aplicación no altera tu sistema operativo y se ejecuta en un sandbox.
 
 Es necesario disponer de un sistema Linux al cual se le haya instalado Docker y Docker-Compose previamente. 
 
 Detalles: https://docs.docker.com/compose/install/linux/#install-using-the-repository
 
 
-Una vez preparado el sistema para disponer de containers Docker, 
+Una vez preparado el sistema para poder disponer de containers Docker, se ejecuta el script "crear_docker" dentro del directorio /docker.
+
+Dependiendo de las prestaciones del equipo y de la calidad de la conexión a Internet, el proceso que sigue puede durar varios minutos, al cabo de los cuales, si no hay un error, tendremos instalado: 
+
+- Dos imágenes docker, de nombres 
 
 
 
