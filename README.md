@@ -22,9 +22,9 @@ OPCION 1: Descarga el ZIP de esta web, descomprime el archivo en un directorio
 OPCION 2: (recomendada): Ejecutar "git clone https://github.com/pansogal/tareas.git" (sin las comillas) en un terminal.
 
 
-## PASO 2 : Generación de container Docker 
+## PASO 2 : Generación de images/containers Docker 
 
-No voy a documentar la instalación bajo sistema operativo Windows de Docker y Docker-compose. Existe documentación sobre ello en la red. 
+No voy a documentar la instalación bajo sistema operativo Windows de Docker y Docker-compose. Existe documentación sobre ello en la red.Toda la documentación que sigue presupone que eres un desarrollador con Linux.
 
 El código se distribuye containerizado, bajo Docker. De esta manera la aplicación no altera tu sistema operativo y se ejecuta en un sandbox.Docker permite hacer pruebas limpiamente, facilitando probar diferentes configuraciones y pudiendo borrar aquello que ya no resulte útil de forma cómoda.
 
@@ -33,7 +33,7 @@ Es necesario disponer de un sistema Linux al cual se le haya instalado Docker y 
 Detalles: https://docs.docker.com/compose/install/linux/#install-using-the-repository
 
 
-Una vez preparado el sistema para poder disponer de containers Docker, se ejecuta el script "crear_docker" dentro del directorio /docker.
+Una vez preparado el sistema para poder disponer de containers Docker, se ejecuta el script "crear_docker" dentro del directorio /docker de Tareas.
 
 Dependiendo de las prestaciones del equipo y de la calidad de la conexión a Internet, el proceso que sigue puede durar varios minutos, al cabo de los cuales, si no hay un error, tendremos instalado: 
 
@@ -62,6 +62,8 @@ La ejecución de "docker ps"debería reflejar algo como ésto:
 
 
 Como se puede observar, el servidor apache escucha en el puerto 8801, y la aplicación web es accesible en el enlace http://localhost:8801
+
+Para arrancar/parar los dos containers puedes usar los scripts start.sh y reset.sh, respectivamente. No se inician automáticamente al iniciar tu sistema ni necesitas crear los containers cada vez que quieras usarlos. Solo se crean una vez (a no ser que hagas cambios, ver siguiente sección de esta documentación).
 
 # Ajuste fino (para manos expertas)
 
