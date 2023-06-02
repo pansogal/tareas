@@ -1,1 +1,2 @@
-# tareas
+# Tareas
+Tareas es una aplicación 
