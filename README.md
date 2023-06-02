@@ -99,6 +99,14 @@ Adminer es accesible via http://localhost:8801/adminer , Denemos poner como serv
 - El siguiente paso es ejecutar el script "compone webtareas3" que es un script creado por mí para poder reusar el código en otras aplicaciones. Este es el script que instala una aplicación CakePHP de nopmbre "webtareas3". Para ello usa el sistema Composer de PHP, que permite resolver las dependencias de los paquetes PHP. Es importante que esta fase se ejecute bien, ya que CakePHP es la base de toda la aplicación Tareas.
 - Luego se ejecutan unos comando de shell dentro del container webtareas3 para configurar el CakePHP recién instalado y el server Apache. 
 
+Lo más reseñable aquí es que se substituye el archivo composer.json con el que está en el directorio inicial_web para añadir nuevos paquetes a la instalación de CakePHP y acto seguido se actualiza CakePHP con la orden "update". Esto convierte a "composer.json" en el archivo más importante con respecto a lo que podrá hacer CakePHP y verdadera muestra del avance del proyecto. 
+
+## Editando inicial_web/compone
+
+
+
+
+
 
 
 
