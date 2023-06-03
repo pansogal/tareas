@@ -1,6 +1,6 @@
 # Tareas
 
-Tareas es una aplicación web de tipo LAMP/CRUD con NodeJS y Milligram CSS
+Tareas es una aplicación web de tipo LAMP/CRUD con JS y Milligram CSS
 
 LAMP = Linux, Apache, MariaDB, PHP8
 
