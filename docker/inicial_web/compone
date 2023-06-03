@@ -4,9 +4,8 @@ cd /var/www/html
 rm -f index.html
 
 
-#mv composer.phar /usr/local/bin/composer
 
-./composer create-project --prefer-dist cakephp/app:^4.4.0 $1
+composer create-project --prefer-dist cakephp/app:^4.4.0 $1
 
 ln -s /var/www/html/$1/vendor/icecoder /usr/share/icecoder
 #mkdir /var/www/html/traslada

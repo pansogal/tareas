@@ -28,6 +28,89 @@ CREATE TABLE `acciones` (
   CONSTRAINT `acciones_ibfk_2` FOREIGN KEY (`avance_id`) REFERENCES `avances` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `acciones` (`id`, `avance_id`, `code`, `accion`, `created`, `modified`, `realizada`, `luzverde`, `critico`, `iniciada`, `finalizada`, `descripcion`, `documentar`, `dura_prevista`) VALUES
+(1,	1,	'00.1',	'Primera visita comercial',	'2023-05-28 10:56:37',	'2023-05-27 19:12:24',	1,	1,	1,	'2023-05-09',	'2023-05-09',	'Busqueda de posibles clientes y contacto con el gestor que pueda decidir',	'Se registran los datos de empresa, contactos e imagen de tarjetas de visita si las hay',	1),
+(2,	1,	'00.2',	'Obtener datos de consumos',	'2023-05-28 10:56:51',	'2023-05-27 19:13:14',	1,	1,	1,	'2023-05-10',	'2023-05-16',	'Obtención de datos de consumo eléctrico para el estudio',	'Se registran las facturas de consumos.',	5),
+(3,	2,	'00.31',	'Previsión de subvenciones',	'2023-05-28 10:57:02',	'2023-05-27 19:32:31',	1,	1,	1,	'2023-05-17',	'2023-05-18',	'Incorporación al estudio de las posibles subvenciones de las administraciones',	'Se comunicará al Departamento de Estudios y se registrará la fuente de información para la consecución (enlaces web, teléfonos, etc..)',	3),
+(4,	2,	'00.32',	'Cálculos de producción',	'2023-05-28 10:57:10',	'2023-05-27 19:33:30',	1,	1,	1,	'2023-05-18',	'2023-05-23',	'Incorporación al estudio del cálculo de producción que se obtiene tras diseñar el campo solar',	'Se registrará este diseño (planos, pdfs) y se indicará  qué herramienta y cuenta se utilizó. Se comunicará al Departamento de Estudios',	1),
+(5,	2,	'00.33',	'Creación del estudio',	'2023-05-28 10:57:17',	'2023-05-27 19:38:07',	1,	1,	1,	'2023-05-23',	'2023-05-23',	'Creación del estudio y oferta con el diseño especificado',	'Se registrará este diseño (pdf) , que incluirá el presupuesto, pasará a estar disponible para aprobación',	1),
+(6,	2,	'00.34',	'Aprobación de la oferta ',	'2023-05-28 10:57:24',	'2023-05-27 19:39:12',	1,	1,	1,	'2023-05-24',	'2023-05-24',	'Aprobación de la oferta al Cliente por el Departamento Comercial, entrega al Cliente',	'No necesita documentarse. Las comunicaciones al Cliente son confidenciales en esta acción',	1),
+(7,	2,	'00.35',	'Aprobación de ampliaciones',	'2023-05-28 10:57:41',	'2023-05-27 19:39:12',	0,	1,	1,	NULL,	NULL,	NULL,	NULL,	2),
+(8,	3,	'00.41',	'Seguimiento de cliente',	'2023-05-27 19:42:06',	'2023-05-27 19:42:06',	1,	1,	1,	'2023-05-24',	'2023-05-31',	'Seguimiento del cliente, empieza cuando se entrega la oferta, solo acaba con la consecución del contrato',	'Se anotarán las comunicaciones con el Cliente por parte de un único comunicador designado',	5),
+(9,	3,	'00.42',	'Visita técnica de detalle',	'2023-05-27 19:36:03',	'2023-05-27 19:36:03',	1,	1,	1,	'2023-05-17',	'2023-05-17',	'Visita técnica de detalle, puede ser antes o después de la entrega de alguna oferta al cliente',	'Se hará un informe, con descripción y fotos y con conclusiones que puedan ser de utilidad en la oferta',	5),
+(10,	3,	'00.5',	'Conformidad técnica',	'2023-05-27 19:43:41',	'2023-05-27 19:43:41',	1,	1,	1,	'2023-05-31',	'2023-05-31',	'La obra puede requerir una discusión técnica por sus caracteristicas especiales, debe pasar una aprobación tipo pasa/no pasa',	'En caso de necesitarse alguna característica adicional, se comunicará al Departamento comercial',	5),
+(11,	3,	'00.6',	'Conforme Cliente',	'2023-05-27 19:44:15',	'2023-05-27 19:44:15',	1,	1,	1,	'2023-05-31',	'2023-05-31',	'El fin de la negoción debe quedar clara, habiéndo resuelto toda duda del cliente',	'No necesita documentarse si no requiere acciones de otros técnicos.',	5),
+(12,	3,	'00.7',	'Obtención del Contrato',	'2023-05-27 19:45:24',	'2023-05-27 19:45:24',	1,	1,	1,	'2023-05-31',	'2023-05-31',	'Esta acción acaba con la consecución del contrato',	'No necesita documentarse. Las comunicaciones son confidenciales en esta acción',	5),
+(13,	4,	'01.1',	'Elaboración de proyecto',	'2023-05-27 19:48:27',	'2023-05-27 19:48:27',	1,	1,	1,	'2023-06-05',	'2023-06-07',	'Redacción del proyecto. Puede estar visado o no.',	'Se almacenan parciales y proyecto',	5),
+(14,	4,	'01.2',	'Tramites de subvención',	'2023-05-27 19:49:09',	'2023-05-27 19:49:09',	1,	1,	1,	'2023-06-05',	'2023-06-06',	'Se tramita la aprobación de subvención o se delega en Cliente.',	'Las comunicaciones con la administración se documentan',	5),
+(15,	4,	'01.3',	'Permisos Especiales',	'2023-05-27 19:52:32',	'2023-05-27 19:52:32',	1,	1,	1,	'2023-06-05',	'2023-06-05',	'La obra puede requerir permisos especiales que tarden en resolverse. Esta acción finaliza cuando esté aprobada o se decida que no es necesaria',	'El técnico debe preguntar a la administración local al tramitar los permisos ordinarios',	5),
+(16,	4,	'01.4',	'Logística de acopios',	'2023-05-27 19:53:10',	'2023-05-27 19:53:10',	1,	1,	1,	'2023-06-06',	'2023-06-06',	'Comunicación de necesidades. El jefe de obra comunicará las necesidades de aquellos elementos de compra difícil',	'Se registrará la comunicación y las resoluciones tomadas y las acciones con nuestros operadores logísticos',	5),
+(17,	4,	'01.5',	'Luz verde a Ejecución',	'2023-05-27 19:56:41',	'2023-05-27 19:56:41',	1,	1,	1,	'2023-06-06',	'2023-06-06',	'Se da luz verde a inicio de obras, considerando acciones futuras como resolubles en tiempo por no haber acciones críticas pendientes',	'Se comunicará también verbalmente',	5),
+(18,	4,	'01.6',	'Decisión de subcontratacion',	'2023-05-27 20:28:05',	'2023-05-27 20:28:05',	0,	1,	1,	'2023-05-31',	NULL,	'',	'',	5),
+(19,	5,	'02.11',	'Compras críticas',	'2023-05-27 20:26:22',	'2023-05-27 20:26:22',	1,	1,	1,	'2023-06-07',	'2023-06-09',	'Se iniciarán aquellas compras o acopios que puedan ocasionar retrasos si no se toman a tiempo',	'Se registran los pedidos y los portes. No se registran aquí los medios auxiliares de descarga.',	5),
+(20,	5,	'02.12',	'Compras en general',	'2023-05-27 20:27:23',	'2023-05-27 20:27:23',	1,	1,	1,	'2023-06-07',	'2023-06-14',	'Compras de material de obra',	'Se registran los pedidos y albaranes.',	5),
+(21,	5,	'02.13',	'Contratac. Medios aux.',	'2023-05-27 20:09:39',	'2023-05-27 20:09:39',	1,	1,	1,	'2023-06-12',	'2023-06-12',	'Alquiler de medios auxiliares de carga, izado, andamios o plataformas',	'Se registran los pedidos.',	5),
+(22,	5,	'02.14',	'Subcontratación',	'2023-05-27 20:25:24',	'2023-05-27 20:25:24',	0,	0,	1,	'2023-05-31',	NULL,	'Se define la relación y el contrato con las empresas subcontratadas.',	'Documentar las comunicaciones y las negociaciones',	5),
+(23,	6,	'02.21',	'PRL Analisis PSS',	'2023-05-27 20:13:33',	'2023-05-27 20:13:33',	1,	1,	1,	'2023-06-09',	'2023-06-09',	'Redacción del plan de seguridad y salud',	'Se registra el plan y las deliveraciones entre técnicos',	5),
+(24,	6,	'02.22',	'PRL Evaluacion de subcontratas',	'2023-05-27 20:25:24',	'2023-05-27 20:25:24',	0,	1,	1,	'2023-05-31',	NULL,	'Evaluación de la PRL de los medios subcontratados',	'Se registran la documentación y las comunicaciones',	5),
+(25,	6,	'02.23',	'PRL Eval. de medios mecánicos',	'2023-05-27 20:08:26',	'2023-05-27 20:08:26',	1,	1,	1,	'2023-06-12',	'2023-06-12',	'Se requiere documentación a las empresas proveedoras de plataformas, medios de izado de cargas, etc..',	'Documentar comunicaciones.',	5),
+(26,	6,	'02.24',	'PRL Coord. Cliente',	'2023-05-27 20:31:17',	'2023-05-27 20:31:17',	1,	1,	1,	'2023-06-09',	'2023-06-09',	'Nombramientos de coordinador PRL del cliente. Aprobación del plan',	'Se registran los nombramientos y la aprobación por parte del cliente',	5),
+(27,	6,	'02.25',	'PRL Responsable en obra',	'2023-05-27 20:30:04',	'2023-05-27 20:30:04',	1,	1,	1,	'2023-06-12',	'2023-06-12',	'Nombramiento de nuestro responsable en obra',	'Se registran los nombramientos',	5),
+(28,	6,	'02.26',	'PRL Seguimiento',	'2023-05-27 20:33:28',	'2023-05-27 20:33:28',	0,	1,	1,	NULL,	NULL,	'Seguimientos de acciones de PRL',	'Se registran incidencias o quejas',	5),
+(29,	7,	'03.1',	'Planificación de obra',	'2023-05-27 20:30:04',	'2023-05-27 20:30:04',	1,	1,	1,	'2023-06-05',	'2023-06-07',	'Planificación de la obra, con fechas de inicio y final',	'Documentar en excel de planificación, documentar los cambios como anotación',	5),
+(30,	7,	'03.2',	'Permiso de obra',	'2023-05-27 20:30:52',	'2023-05-27 20:30:52',	1,	1,	1,	'2023-06-07',	'2023-06-07',	'Obtención de permisos de obra',	'Documentar las comunicaciones',	5),
+(31,	7,	'03.3',	'Permiso de ocupacion',	'2023-05-27 20:32:27',	'2023-05-27 20:32:27',	1,	1,	1,	'2023-06-08',	'2023-06-08',	'Obtención de permisos de ocupación',	'Documentar las comunicaciones',	5),
+(32,	8,	'04.1',	'Ejecución de obra',	'2023-05-27 20:33:28',	'2023-05-27 20:33:28',	1,	1,	1,	'2023-06-12',	'2023-06-12',	'Ejecución de la obra, real con fechas de inicio y final',	'Documentar los cambios como anotación. documentar los empleados asignados y sus fechas',	5),
+(33,	8,	'04.2',	'Ampliaciones de obra',	'2023-04-30 09:40:51',	'2023-04-30 09:40:51',	0,	0,	1,	NULL,	NULL,	'Ampliaciones de obra que surjan, como instalación de líneas de vida permanentes',	'Consultar si están en contrato. Especificar en anotación',	5),
+(34,	8,	'04.3',	'Certificaciones',	'2023-05-27 19:56:41',	'2023-05-27 19:56:41',	0,	1,	1,	NULL,	NULL,	'Certificaciones',	'Anotar como 04.3X en anotación, indicando concepto (\'mensual\', \'acopio\', etc..) y fecha',	5),
+(35,	8,	'04.41',	'Puesta en Marcha',	'2023-05-27 20:33:28',	'2023-05-27 20:33:28',	0,	1,	1,	NULL,	NULL,	'Puesta en marcha de la instalación. Pruebas, ajustes',	'Anotar las incidencias posibles',	5),
+(36,	8,	'04.42',	'Comunicaciones a cliente',	'2023-04-30 09:40:51',	'2023-04-30 09:40:51',	0,	0,	1,	NULL,	NULL,	'Comunicar al cliente la aplicación de supervisión de la planta y sus ajustes, si proceden',	'Anotar la fecha',	5),
+(37,	8,	'04.5',	'Fin de obra',	'2023-05-27 20:33:28',	'2023-05-27 20:33:28',	0,	1,	1,	NULL,	NULL,	'Decretar fin de la obra (y sus ampliaciones) tras chequeo de las partidas y acciones',	'Anotar la fecha',	5),
+(38,	9,	'05.1',	'Protocolo de fin de obra',	'2023-04-30 09:40:51',	'2023-04-30 09:40:51',	0,	0,	1,	NULL,	NULL,	'Cumplimentación del protocolo de fin de obra, con operarios',	'Adjuntar informe, comunicar a Proyectos',	5),
+(39,	9,	'05.2',	'Listado de n. serie placas',	'2023-04-30 09:40:51',	'2023-04-30 09:40:51',	0,	0,	1,	NULL,	NULL,	'Anotar los números de serie de placas u otros elementos cuando sea necesario',	'Archivar y comunicar a Legalizaciones',	5),
+(40,	9,	'05.3',	'Visado de Proyecto',	'2023-05-27 20:33:28',	'2023-05-27 20:33:28',	0,	1,	1,	NULL,	NULL,	'Visado de proyecto, si no lo está aún',	'Archivar en su sitio, comunicar',	5),
+(41,	9,	'05.4',	'Certificado de fin de obra',	'2023-04-30 09:40:51',	'2023-04-30 09:40:51',	0,	0,	1,	NULL,	NULL,	'Certificado de fin de obra',	'Archivar en su sitio, comunicar',	5),
+(247,	55,	'00.1',	'Primera visita comercial',	'2023-05-28 11:32:18',	'2023-05-28 11:32:18',	1,	1,	1,	'2023-03-15',	'2023-03-15',	'Busqueda de posibles clientes y contacto con el gestor que pueda decidir',	'Se registran los datos de empresa, contactos e imagen de tarjetas de visita si las hay',	1),
+(248,	55,	'00.2',	'Obtener datos de consumos',	'2023-05-28 11:32:18',	'2023-05-28 11:32:18',	0,	1,	1,	NULL,	NULL,	'Obtención de datos de consumo eléctrico para el estudio',	'Se registran las facturas de consumos.',	3),
+(249,	56,	'00.31',	'Previsión de subvenciones',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Incorporación al estudio de las posibles subvenciones de las administraciones',	'Se comunicará al Departamento de Estudios y se registrará la fuente de información para la consecución (enlaces web, teléfonos, etc..)',	2),
+(250,	56,	'00.32',	'Cálculos de producción',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Incorporación al estudio del cálculo de producción que se obtiene tras diseñar el campo solar',	'Se registrará este diseño (planos, pdfs) y se indicará  qué herramienta y cuenta se utilizó. Se comunicará al Departamento de Estudios',	1),
+(251,	56,	'00.33',	'Creación del estudio',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Creación del estudio y oferta con el diseño especificado',	'Se registrará este diseño (pdf) , que incluirá el presupuesto, pasará a estar disponible para aprobación',	1),
+(252,	56,	'00.34',	'Aprobación de la oferta ',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Aprobación de la oferta al Cliente por el Departamento Comercial, entrega al Cliente',	'No necesita documentarse. Las comunicaciones al Cliente son confidenciales en esta acción',	1),
+(253,	56,	'00.35',	'Aprobación de ampliaciones',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Si surgen ampliaciones y tienen que ver directamente con el posible contrato, por ejemplo, líneas de vida, se han de dirimir en esta acción',	'Hay que documentar las comunicaciones y ofertas.',	1),
+(254,	57,	'00.41',	'Seguimiento de cliente',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Seguimiento del cliente, empieza cuando se entrega la oferta, solo acaba con la consecución del contrato',	'Se anotarán las comunicaciones con el Cliente por parte de un único comunicador designado',	15),
+(255,	57,	'00.42',	'Visita técnica de detalle',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Visita técnica de detalle, puede ser antes o después de la entrega de alguna oferta al cliente',	'Se hará un informe, con descripción y fotos y con conclusiones que puedan ser de utilidad en la oferta',	1),
+(256,	57,	'00.5',	'Conformidad técnica',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'La obra puede requerir una discusión técnica por sus caracteristicas especiales, debe pasar una aprobación tipo pasa/no pasa',	'En caso de necesitarse alguna característica adicional, se comunicará al Departamento comercial',	1),
+(257,	57,	'00.6',	'Conforme Cliente',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'El fin de la negoción debe quedar clara, habiéndo resuelto toda duda del cliente',	'No necesita documentarse si no requiere acciones de otros técnicos.',	2),
+(258,	57,	'00.7',	'Obtención del Contrato',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Esta acción acaba con la consecución del contrato',	'No necesita documentarse. Las comunicaciones son confidenciales en esta acción',	3),
+(259,	58,	'01.1',	'Elaboración de proyecto',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Redacción del proyecto. Puede estar visado o no.',	'Se almacenan parciales y proyecto',	5),
+(260,	58,	'01.2',	'Tramites de subvención',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Se tramita la aprobación de subvención o se delega en Cliente.',	'Las comunicaciones con la administración se documentan',	3),
+(261,	58,	'01.3',	'Permisos Especiales',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'La obra puede requerir permisos especiales que tarden en resolverse. Esta acción finaliza cuando esté aprobada o se decida que no es necesaria',	'El técnico debe preguntar a la administración local al tramitar los permisos ordinarios',	5),
+(262,	58,	'01.4',	'Logística de acopios',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Comunicación de necesidades. El jefe de obra comunicará las necesidades de aquellos elementos de compra difícil',	'Se registrará la comunicación y las resoluciones tomadas y las acciones con nuestros operadores logísticos',	1),
+(263,	58,	'01.5',	'Luz verde a Ejecución',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Se da luz verde a inicio de obras, considerando acciones futuras como resolubles en tiempo por no haber acciones críticas pendientes',	'Se comunicará también verbalmente',	2),
+(264,	58,	'01.6',	'D. Subcontratacion M.O.',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Se ha de aprobar si hay subcontrata de mano de obra',	'En caso de ser negado, se anotan los detalles.\r\nEn caso de ser aprobado se documentan las comunicaciones y los acuerdos.',	1),
+(265,	59,	'02.11',	'Compras críticas',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Se iniciarán aquellas compras o acopios que puedan ocasionar retrasos si no se toman a tiempo',	'Se registran los pedidos y los portes. No se registran aquí los medios auxiliares de descarga.',	2),
+(266,	59,	'02.12',	'Compras en general',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Compras de material de obra',	'Se registran los pedidos y albaranes.',	5),
+(267,	59,	'02.13',	'Contratac. Medios aux.',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Alquiler de medios auxiliares de carga, izado, andamios o plataformas',	'Se registran los pedidos.',	3),
+(268,	59,	'02.14',	'Subcontratación',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Se define la relación y el contrato con las empresas subcontratadas.',	'Documentar las comunicaciones y las negociaciones',	5),
+(269,	60,	'02.21',	'PRL Analisis PSS',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Redacción del plan de seguridad y salud',	'Se registra el plan y las deliveraciones entre técnicos',	1),
+(270,	60,	'02.22',	'PRL Evaluacion de subcontratas',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Evaluación de la PRL de los medios subcontratados',	'Se registran la documentación y las comunicaciones',	2),
+(271,	60,	'02.23',	'PRL Eval. de medios mecánicos',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Se requiere documentación a las empresas proveedoras de plataformas, medios de izado de cargas, etc..',	'Documentar comunicaciones.',	1),
+(272,	60,	'02.24',	'PRL Coord. Cliente',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Nombramientos de coordinador PRL del cliente. Aprobación del plan',	'Se registran los nombramientos y la aprobación por parte del cliente',	2),
+(273,	60,	'02.25',	'PRL Responsable en obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Nombramiento de nuestro responsable en obra',	'Se registran los nombramientos',	1),
+(274,	60,	'02.26',	'PRL Seguimiento',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Seguimientos de acciones de PRL',	'Se registran incidencias o quejas',	14),
+(275,	61,	'03.1',	'Planificación de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Planificación de la obra, con fechas de inicio y final',	'Documentar en excel de planificación, documentar los cambios como anotación',	1),
+(276,	61,	'03.2',	'Permiso de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Obtención de permisos de obra',	'Documentar las comunicaciones',	3),
+(277,	61,	'03.3',	'Permiso de ocupacion',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Obtención de permisos de ocupación',	'Documentar las comunicaciones',	3),
+(278,	62,	'04.1',	'Ejecución de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Ejecución de la obra, real con fechas de inicio y final',	'Documentar los cambios como anotación. documentar los empleados asignados y sus fechas',	10),
+(279,	62,	'04.2',	'Ampliaciones de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Ampliaciones de obra que surjan, como instalación de líneas de vida permanentes',	'Consultar si están en contrato. Especificar en anotación',	5),
+(280,	62,	'04.3',	'Certificaciones',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Certificaciones',	'Anotar como 04.3X en anotación, indicando concepto (\'mensual\', \'acopio\', etc..) y fecha',	15),
+(281,	62,	'04.41',	'Puesta en Marcha',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Puesta en marcha de la instalación. Pruebas, ajustes',	'Anotar las incidencias posibles',	1),
+(282,	62,	'04.42',	'Comunicaciones a cliente',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Comunicar al cliente la aplicación de supervisión de la planta y sus ajustes, si proceden',	'Anotar la fecha',	1),
+(283,	62,	'04.5',	'Fin de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Decretar fin de la obra (y sus ampliaciones) tras chequeo de las partidas y acciones',	'Anotar la fecha',	1),
+(284,	63,	'05.1',	'Protocolo de fin de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Cumplimentación del protocolo de fin de obra, con operarios',	'Adjuntar informe, comunicar a Proyectos',	3),
+(285,	63,	'05.2',	'Listado de n. serie placas',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Anotar los números de serie de placas u otros elementos cuando sea necesario',	'Archivar y comunicar a Legalizaciones',	1),
+(286,	63,	'05.3',	'Visado de Proyecto',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Visado de proyecto, si no lo está aún',	'Archivar en su sitio, comunicar',	2),
+(287,	63,	'05.4',	'Certificado de fin de obra',	'2023-05-28 11:31:58',	'2023-05-28 11:31:58',	0,	0,	1,	NULL,	NULL,	'Certificado de fin de obra',	'Archivar en su sitio, comunicar',	2);
 
 DROP TABLE IF EXISTS `asignados`;
 CREATE TABLE `asignados` (
@@ -41,6 +124,99 @@ CREATE TABLE `asignados` (
   CONSTRAINT `asignados_ibfk_2` FOREIGN KEY (`tecnico_id`) REFERENCES `tecnicos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `asignados` (`id`, `tecnico_id`, `tarea_id`) VALUES
+(7,	2,	1),
+(8,	1,	2),
+(10,	3,	3),
+(11,	1,	4),
+(12,	2,	4),
+(14,	4,	5),
+(15,	5,	3),
+(16,	6,	6),
+(17,	7,	6),
+(18,	8,	1),
+(19,	2,	2),
+(20,	8,	2),
+(21,	8,	4),
+(22,	9,	5),
+(23,	10,	7),
+(24,	9,	7),
+(25,	11,	8),
+(26,	12,	7),
+(27,	12,	10),
+(28,	11,	11),
+(29,	5,	9),
+(30,	13,	6),
+(32,	14,	13),
+(33,	4,	14),
+(34,	4,	12),
+(35,	6,	15),
+(36,	13,	15),
+(37,	7,	15),
+(38,	15,	16),
+(39,	15,	17),
+(40,	15,	18),
+(41,	11,	19),
+(42,	16,	19),
+(43,	11,	20),
+(44,	16,	20),
+(45,	4,	21),
+(46,	7,	21),
+(47,	13,	21),
+(48,	6,	21),
+(49,	6,	12),
+(50,	13,	12),
+(51,	7,	12),
+(52,	6,	22),
+(53,	7,	22),
+(54,	13,	22),
+(55,	6,	23),
+(56,	13,	23),
+(57,	7,	23),
+(58,	6,	24),
+(59,	13,	24),
+(60,	7,	24),
+(61,	10,	29),
+(62,	6,	29),
+(63,	13,	29),
+(64,	7,	29),
+(65,	9,	30),
+(66,	14,	30),
+(67,	16,	31),
+(68,	16,	11),
+(69,	7,	32),
+(70,	6,	32),
+(71,	13,	32),
+(72,	6,	33),
+(73,	13,	33),
+(74,	7,	33),
+(75,	15,	34),
+(76,	13,	35),
+(77,	15,	35),
+(78,	6,	35),
+(79,	7,	35),
+(80,	4,	40),
+(81,	14,	41),
+(82,	9,	41),
+(83,	4,	38),
+(84,	15,	39),
+(85,	6,	36),
+(86,	7,	36),
+(87,	13,	36),
+(88,	6,	27),
+(89,	13,	27),
+(90,	7,	27),
+(91,	6,	25),
+(92,	7,	25),
+(93,	13,	25),
+(94,	6,	26),
+(95,	7,	26),
+(96,	13,	26),
+(99,	12,	37),
+(100,	6,	28),
+(101,	13,	28),
+(102,	7,	28),
+(118,	1,	1);
 
 DROP TABLE IF EXISTS `avances`;
 CREATE TABLE `avances` (
@@ -62,6 +238,25 @@ CREATE TABLE `avances` (
   CONSTRAINT `avances_ibfk_4` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `avances` (`id`, `parent_id`, `lft`, `rght`, `proyecto_id`, `prefix`, `avance`, `created`, `modified`, `completado`) VALUES
+(1,	NULL,	1,	18,	2,	'01',	'Primer contacto',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	1),
+(2,	1,	2,	17,	2,	'02',	'Estudio',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	0),
+(3,	2,	3,	16,	2,	'03',	'Negociación',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	1),
+(4,	3,	4,	5,	2,	'04',	'Trámites previos',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	0),
+(5,	3,	6,	7,	2,	'05',	'Acopios',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	0),
+(6,	3,	8,	9,	2,	'06',	'PRL',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	0),
+(7,	3,	10,	15,	2,	'07',	'Planificacion',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	1),
+(8,	7,	11,	14,	2,	'08',	'Obra',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	0),
+(9,	8,	12,	13,	2,	'09',	'Documentación',	'2023-05-28 10:29:33',	'2023-05-28 10:29:33',	0),
+(55,	NULL,	19,	36,	8,	'01',	'Primer contacto',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(56,	55,	20,	35,	8,	'02',	'Estudio',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(57,	56,	21,	34,	8,	'03',	'Negociación',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(58,	57,	22,	23,	8,	'04',	'Trámites previos',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(59,	57,	24,	25,	8,	'05',	'Acopios',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(60,	57,	26,	27,	8,	'06',	'PRL',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(61,	57,	28,	33,	8,	'07',	'Planificacion',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(62,	61,	29,	32,	8,	'08',	'Obra',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0),
+(63,	62,	30,	31,	8,	'09',	'Documentación',	'2023-05-28 20:45:47',	'2023-05-28 20:45:47',	0);
 
 DROP TABLE IF EXISTS `confavances`;
 CREATE TABLE `confavances` (
@@ -78,6 +273,17 @@ CREATE TABLE `confavances` (
   CONSTRAINT `confavances_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `confavances` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `confavances` (`id`, `parent_id`, `lft`, `rght`, `prefijo`, `cavance`, `explicacion`) VALUES
+(1,	NULL,	NULL,	NULL,	NULL,	'No asignado',	NULL),
+(2,	NULL,	1,	18,	'01',	'Primer contacto',	'Tareas comerciales de captación del cliente previas al estudio de una oferta.'),
+(3,	2,	2,	17,	'02',	'Estudio',	''),
+(4,	3,	3,	16,	'03',	'Negociación',	''),
+(5,	4,	4,	5,	'04',	'Trámites previos',	''),
+(6,	4,	6,	7,	'05',	'Acopios',	''),
+(7,	4,	8,	9,	'06',	'PRL',	''),
+(8,	4,	10,	15,	'07',	'Planificacion',	''),
+(9,	8,	11,	14,	'08',	'Obra',	''),
+(10,	9,	12,	13,	'09',	'Documentación',	'');
 
 DROP TABLE IF EXISTS `contactos`;
 CREATE TABLE `contactos` (
@@ -91,6 +297,8 @@ CREATE TABLE `contactos` (
   CONSTRAINT `contactos_ibfk_1` FOREIGN KEY (`empresa_id`) REFERENCES `empresas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `contactos` (`id`, `empresa_id`, `persona`, `rol`, `tlfno_mail`) VALUES
+(1,	1,	'Juan Ortiz',	'contacto',	'');
 
 DROP TABLE IF EXISTS `delegaciones`;
 CREATE TABLE `delegaciones` (
@@ -100,6 +308,10 @@ CREATE TABLE `delegaciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `delegaciones` (`id`, `delegacion`, `corto`) VALUES
+(1,	'Madrid',	'MAD'),
+(2,	'Coruña',	'C'),
+(3,	'Lugo',	'LU');
 
 DROP TABLE IF EXISTS `empresas`;
 CREATE TABLE `empresas` (
@@ -110,6 +322,9 @@ CREATE TABLE `empresas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `empresas` (`id`, `empresa`, `provincia`, `direccion`) VALUES
+(1,	'Chocolates S.A.',	'Toledo',	''),
+(2,	'TransCarallo',	'Coruña',	'Calle Centolla 17');
 
 DROP TABLE IF EXISTS `implicados`;
 CREATE TABLE `implicados` (
@@ -125,6 +340,111 @@ CREATE TABLE `implicados` (
   CONSTRAINT `implicados_ibfk_4` FOREIGN KEY (`tecnico_id`) REFERENCES `tecnicos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `implicados` (`id`, `accione_id`, `tecnico_id`, `fecha_limite`, `fecha_inicio`) VALUES
+(1,	1,	1,	NULL,	NULL),
+(2,	2,	1,	NULL,	NULL),
+(3,	3,	11,	NULL,	NULL),
+(4,	6,	9,	NULL,	NULL),
+(5,	6,	14,	NULL,	NULL),
+(6,	7,	9,	NULL,	NULL),
+(7,	7,	14,	NULL,	NULL),
+(8,	8,	1,	NULL,	NULL),
+(9,	9,	6,	'2023-06-21',	'2023-05-16'),
+(10,	10,	10,	NULL,	NULL),
+(11,	10,	9,	NULL,	NULL),
+(12,	10,	12,	NULL,	NULL),
+(13,	11,	14,	NULL,	NULL),
+(14,	12,	4,	NULL,	NULL),
+(15,	12,	9,	NULL,	NULL),
+(16,	13,	12,	NULL,	NULL),
+(17,	14,	11,	NULL,	NULL),
+(18,	14,	16,	NULL,	NULL),
+(19,	15,	16,	NULL,	NULL),
+(20,	16,	6,	NULL,	NULL),
+(21,	16,	4,	NULL,	NULL),
+(22,	17,	4,	NULL,	NULL),
+(23,	18,	4,	NULL,	NULL),
+(24,	19,	6,	NULL,	NULL),
+(25,	20,	6,	NULL,	NULL),
+(26,	21,	6,	NULL,	NULL),
+(27,	22,	4,	NULL,	NULL),
+(28,	23,	15,	NULL,	NULL),
+(29,	24,	15,	NULL,	NULL),
+(30,	25,	15,	NULL,	NULL),
+(31,	26,	15,	NULL,	NULL),
+(32,	27,	15,	NULL,	NULL),
+(33,	28,	6,	NULL,	NULL),
+(34,	28,	15,	NULL,	NULL),
+(35,	29,	6,	NULL,	NULL),
+(36,	29,	4,	NULL,	NULL),
+(37,	30,	11,	NULL,	NULL),
+(38,	30,	16,	NULL,	NULL),
+(39,	31,	11,	NULL,	NULL),
+(40,	31,	16,	NULL,	NULL),
+(41,	32,	6,	NULL,	NULL),
+(42,	33,	6,	NULL,	NULL),
+(43,	34,	6,	NULL,	NULL),
+(44,	34,	10,	NULL,	NULL),
+(45,	35,	6,	NULL,	NULL),
+(46,	36,	6,	NULL,	NULL),
+(47,	37,	6,	NULL,	NULL),
+(48,	38,	6,	NULL,	NULL),
+(49,	39,	6,	NULL,	NULL),
+(50,	40,	12,	NULL,	NULL),
+(51,	41,	6,	NULL,	NULL),
+(54,	5,	5,	NULL,	NULL),
+(55,	4,	5,	NULL,	NULL),
+(309,	247,	2,	NULL,	NULL),
+(310,	248,	2,	NULL,	NULL),
+(311,	249,	11,	NULL,	NULL),
+(312,	250,	5,	NULL,	NULL),
+(313,	251,	5,	NULL,	NULL),
+(314,	252,	9,	NULL,	NULL),
+(315,	252,	14,	NULL,	NULL),
+(316,	253,	9,	NULL,	NULL),
+(317,	253,	14,	NULL,	NULL),
+(318,	254,	2,	NULL,	NULL),
+(319,	255,	7,	NULL,	NULL),
+(320,	256,	9,	NULL,	NULL),
+(321,	256,	12,	NULL,	NULL),
+(322,	257,	14,	NULL,	NULL),
+(323,	258,	4,	NULL,	NULL),
+(324,	258,	9,	NULL,	NULL),
+(325,	259,	12,	NULL,	NULL),
+(326,	260,	11,	NULL,	NULL),
+(327,	260,	16,	NULL,	NULL),
+(328,	261,	16,	NULL,	NULL),
+(329,	262,	4,	NULL,	NULL),
+(330,	262,	7,	NULL,	NULL),
+(331,	263,	4,	NULL,	NULL),
+(332,	264,	4,	NULL,	NULL),
+(333,	265,	7,	NULL,	NULL),
+(334,	266,	7,	NULL,	NULL),
+(335,	267,	7,	NULL,	NULL),
+(336,	268,	4,	NULL,	NULL),
+(337,	269,	15,	NULL,	NULL),
+(338,	270,	15,	NULL,	NULL),
+(339,	271,	15,	NULL,	NULL),
+(340,	272,	15,	NULL,	NULL),
+(341,	273,	15,	NULL,	NULL),
+(342,	274,	7,	NULL,	NULL),
+(343,	274,	15,	NULL,	NULL),
+(344,	275,	4,	NULL,	NULL),
+(345,	275,	7,	NULL,	NULL),
+(346,	276,	11,	NULL,	NULL),
+(347,	276,	16,	NULL,	NULL),
+(348,	277,	11,	NULL,	NULL),
+(349,	277,	16,	NULL,	NULL),
+(350,	278,	7,	NULL,	NULL),
+(351,	279,	7,	NULL,	NULL),
+(352,	280,	7,	NULL,	NULL),
+(353,	281,	7,	NULL,	NULL),
+(354,	282,	7,	NULL,	NULL),
+(355,	283,	7,	NULL,	NULL),
+(356,	284,	7,	NULL,	NULL),
+(357,	285,	7,	NULL,	NULL),
+(358,	286,	12,	NULL,	NULL),
+(359,	287,	7,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `notas`;
 CREATE TABLE `notas` (
@@ -161,6 +481,15 @@ CREATE TABLE `parametros` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `parametros` (`id`, `familia`, `indice`, `parametro`, `requiere_doc`, `puede_otro`, `describe`) VALUES
+(1,	'01 -General',	1,	'Número de paneles',	0,	0,	'Se indicará el número de paneles en el campo solar.'),
+(2,	'01 -General',	2,	'Modelo de panel',	0,	0,	'Se indicará la marca y el modelo del panel'),
+(3,	'01 -General',	5,	'Modelo del inversor',	0,	1,	'Se indicará la marca y el modelo del inversor.'),
+(4,	'01 -General',	6,	'Potencia del inversor',	0,	1,	'Se indicará la potencia nominal de este inversor.'),
+(5,	'01 -General',	3,	'Potencia del panel',	0,	0,	'Se indicara la potencia en vatios del panel. '),
+(6,	'01 -General',	4,	'Potencia total del campo solar',	0,	0,	'Se indicará la potencia total, que es num. paneles x potencia de panel.'),
+(7,	'01 -General',	7,	'Disposición de placas (coplanar, inclinada) y material de soporte.',	0,	1,	'Indicar el tipo de instalación, si es coplanar o inclinada. Indicar si es metálico o si es de hormigón u otro material.\r\nEs posible que haya más de un tipo.'),
+(8,	'01 -General',	8,	'Marca y modelo de la estructura de soporte de placas',	0,	1,	'Indicar la marca y el modelo del soporte. \r\nPuede haber varios, en consonancia con las diferentes soluciones en el campo solar. ');
 
 DROP TABLE IF EXISTS `proyectos`;
 CREATE TABLE `proyectos` (
@@ -184,6 +513,9 @@ CREATE TABLE `proyectos` (
   CONSTRAINT `proyectos_ibfk_2` FOREIGN KEY (`empresa_id`) REFERENCES `empresas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `proyectos` (`id`, `delegacione_id`, `lugar`, `empresa_id`, `proyecto`, `codigo`, `corto`, `es_fv`, `es_clima`, `es_industrial`, `es_residencial`, `created`, `modified`) VALUES
+(2,	1,	'Madrid, Calle Luna 4',	1,	'Instalación fotovoltaica sin excedentes en nave',	'0003',	'M_0003_LUNA',	1,	0,	1,	0,	'2023-04-04 08:58:19',	'2023-04-04 08:58:19'),
+(8,	2,	'Calle Congosto 17',	2,	'Instalación 1.2 Mw en cubierta',	'0281',	'C_0281_FV',	1,	0,	1,	0,	'2023-05-28 11:31:41',	'2023-05-28 11:31:41');
 
 DROP TABLE IF EXISTS `rojos`;
 CREATE TABLE `rojos` (
@@ -200,6 +532,59 @@ CREATE TABLE `rojos` (
   CONSTRAINT `rojos_ibfk_3` FOREIGN KEY (`conlimitede`) REFERENCES `tareas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `rojos` (`id`, `propio`, `noantesde`, `conlimitede`) VALUES
+(7,	2,	1,	NULL),
+(8,	3,	2,	NULL),
+(9,	3,	8,	NULL),
+(10,	3,	9,	NULL),
+(11,	30,	3,	NULL),
+(12,	4,	30,	NULL),
+(13,	6,	2,	NULL),
+(14,	7,	30,	NULL),
+(15,	13,	7,	NULL),
+(16,	5,	13,	NULL),
+(17,	10,	5,	NULL),
+(18,	11,	5,	NULL),
+(19,	31,	5,	NULL),
+(20,	12,	5,	NULL),
+(21,	14,	10,	NULL),
+(22,	14,	11,	NULL),
+(23,	14,	31,	NULL),
+(24,	14,	12,	NULL),
+(25,	15,	14,	NULL),
+(26,	32,	14,	NULL),
+(27,	33,	14,	NULL),
+(30,	38,	17,	NULL),
+(32,	33,	39,	NULL),
+(33,	16,	14,	NULL),
+(34,	17,	14,	NULL),
+(35,	39,	14,	NULL),
+(36,	18,	14,	NULL),
+(37,	34,	21,	NULL),
+(38,	35,	22,	NULL),
+(39,	21,	14,	NULL),
+(40,	19,	14,	NULL),
+(41,	20,	21,	NULL),
+(42,	22,	21,	NULL),
+(43,	22,	19,	NULL),
+(44,	22,	20,	NULL),
+(45,	23,	14,	NULL),
+(47,	29,	14,	NULL),
+(48,	36,	22,	NULL),
+(49,	27,	36,	NULL),
+(50,	24,	22,	NULL),
+(51,	25,	24,	NULL),
+(52,	26,	24,	NULL),
+(53,	37,	22,	NULL),
+(54,	28,	37,	NULL),
+(55,	8,	2,	NULL),
+(56,	9,	2,	NULL),
+(57,	7,	6,	NULL),
+(58,	3,	6,	NULL),
+(59,	40,	5,	NULL),
+(60,	38,	40,	NULL),
+(61,	41,	30,	NULL),
+(62,	23,	41,	NULL);
 
 DROP TABLE IF EXISTS `tareas`;
 CREATE TABLE `tareas` (
@@ -216,6 +601,48 @@ CREATE TABLE `tareas` (
   CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`confavance_id`) REFERENCES `confavances` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `tareas` (`id`, `codigo`, `tarea`, `dura_tipico`, `descripcion`, `documentar`, `critico`, `confavance_id`) VALUES
+(1,	'00.1',	'Primera visita comercial',	1,	'Busqueda de posibles clientes y contacto con el gestor que pueda decidir',	'Se registran los datos de empresa, contactos e imagen de tarjetas de visita si las hay',	1,	2),
+(2,	'00.2',	'Obtener datos de consumos',	3,	'Obtención de datos de consumo eléctrico para el estudio',	'Se registran las facturas de consumos.',	1,	2),
+(3,	'00.33',	'Creación del estudio',	1,	'Creación del estudio y oferta con el diseño especificado',	'Se registrará este diseño (pdf) , que incluirá el presupuesto, pasará a estar disponible para aprobación',	1,	3),
+(4,	'00.41',	'Seguimiento de cliente',	15,	'Seguimiento del cliente, empieza cuando se entrega la oferta, solo acaba con la consecución de la promesa de contrato, entrando así en la negociación.',	'Se anotarán las comunicaciones con el Cliente por parte de un único comunicador designado',	1,	4),
+(5,	'00.7',	'Obtención del Contrato',	3,	'Esta acción acaba con la consecución del contrato',	'No necesita documentarse. Las comunicaciones son confidenciales en esta acción',	1,	4),
+(6,	'00.42',	'Visita técnica de detalle',	1,	'Visita técnica de detalle, puede ser antes o después de la entrega de alguna oferta al cliente',	'Se hará un informe, con descripción y fotos y con conclusiones que puedan ser de utilidad en la oferta',	0,	4),
+(7,	'00.5',	'Conformidad técnica',	1,	'La obra puede requerir una discusión técnica por sus caracteristicas especiales, debe pasar una aprobación tipo pasa/no pasa',	'En caso de necesitarse alguna característica adicional, se comunicará al Departamento comercial',	1,	4),
+(8,	'00.31',	'Previsión de subvenciones',	2,	'Incorporación al estudio de las posibles subvenciones de las administraciones',	'Se comunicará al Departamento de Estudios y se registrará la fuente de información para la consecución (enlaces web, teléfonos, etc..)',	1,	3),
+(9,	'00.32',	'Cálculos de producción',	1,	'Incorporación al estudio del cálculo de producción que se obtiene tras diseñar el campo solar',	'Se registrará este diseño (planos, pdfs) y se indicará  qué herramienta y cuenta se utilizó. Se comunicará al Departamento de Estudios',	1,	3),
+(10,	'01.1',	'Elaboración de proyecto',	5,	'Redacción del proyecto. Puede estar visado o no.',	'Se almacenan parciales y proyecto',	1,	5),
+(11,	'01.2',	'Tramites de subvención',	3,	'Se tramita la aprobación de subvención o se delega en Cliente.',	'Las comunicaciones con la administración se documentan',	1,	5),
+(12,	'01.4',	'Logística de acopios',	1,	'Comunicación de necesidades. El jefe de obra comunicará las necesidades de aquellos elementos de compra difícil',	'Se registrará la comunicación y las resoluciones tomadas y las acciones con nuestros operadores logísticos',	1,	5),
+(13,	'00.6',	'Conforme Cliente',	2,	'El fin de la negoción debe quedar clara, habiéndo resuelto toda duda del cliente',	'No necesita documentarse si no requiere acciones de otros técnicos.',	1,	4),
+(14,	'01.5',	'Luz verde a Ejecución',	2,	'Se da luz verde a inicio de obras, considerando acciones futuras como resolubles en tiempo por no haber acciones críticas pendientes',	'Se comunicará también verbalmente',	1,	5),
+(15,	'02.11',	'Compras críticas',	2,	'Se iniciarán aquellas compras o acopios que puedan ocasionar retrasos si no se toman a tiempo',	'Se registran los pedidos y los portes. No se registran aquí los medios auxiliares de descarga.',	1,	6),
+(16,	'02.21',	'PRL Analisis PSS',	1,	'Redacción del plan de seguridad y salud',	'Se registra el plan y las deliveraciones entre técnicos',	1,	7),
+(17,	'02.22',	'PRL Evaluacion de subcontratas',	2,	'Evaluación de la PRL de los medios subcontratados',	'Se registran la documentación y las comunicaciones',	1,	7),
+(18,	'02.24',	'PRL Coord. Cliente',	2,	'Nombramientos de coordinador PRL del cliente. Aprobación del plan',	'Se registran los nombramientos y la aprobación por parte del cliente',	1,	7),
+(19,	'03.2',	'Permiso de obra',	3,	'Obtención de permisos de obra',	'Documentar las comunicaciones',	1,	8),
+(20,	'03.3',	'Permiso de ocupacion',	3,	'Obtención de permisos de ocupación',	'Documentar las comunicaciones',	1,	8),
+(21,	'03.1',	'Planificación de obra',	1,	'Planificación de la obra, con fechas de inicio y final',	'Documentar en excel de planificación, documentar los cambios como anotación',	1,	8),
+(22,	'04.1',	'Ejecución de obra',	10,	'Ejecución de la obra, real con fechas de inicio y final',	'Documentar los cambios como anotación. documentar los empleados asignados y sus fechas',	1,	9),
+(23,	'04.2',	'Ampliaciones de obra',	5,	'Ampliaciones de obra que surjan, como instalación de líneas de vida permanentes',	'Consultar si están en contrato. Especificar en anotación',	1,	9),
+(24,	'04.5',	'Fin de obra',	1,	'Decretar fin de la obra (y sus ampliaciones) tras chequeo de las partidas y acciones',	'Anotar la fecha',	1,	9),
+(25,	'05.1',	'Protocolo de fin de obra',	3,	'Cumplimentación del protocolo de fin de obra, con operarios',	'Adjuntar informe, comunicar a Proyectos',	1,	10),
+(26,	'05.2',	'Listado de n. serie placas',	1,	'Anotar los números de serie de placas u otros elementos cuando sea necesario',	'Archivar y comunicar a Legalizaciones',	1,	10),
+(27,	'04.42',	'Comunicaciones a cliente',	1,	'Comunicar al cliente la aplicación de supervisión de la planta y sus ajustes, si proceden',	'Anotar la fecha',	1,	9),
+(28,	'05.4',	'Certificado de fin de obra',	2,	'Certificado de fin de obra',	'Archivar en su sitio, comunicar',	1,	10),
+(29,	'04.3',	'Certificaciones',	15,	'Certificaciones',	'Anotar como 04.3X en anotación, indicando concepto (\'mensual\', \'acopio\', etc..) y fecha',	1,	9),
+(30,	'00.34',	'Aprobación de la oferta ',	1,	'Aprobación de la oferta al Cliente por el Departamento Comercial, entrega al Cliente',	'No necesita documentarse. Las comunicaciones al Cliente son confidenciales en esta acción',	1,	3),
+(31,	'01.3',	'Permisos Especiales',	5,	'La obra puede requerir permisos especiales que tarden en resolverse. Esta acción finaliza cuando esté aprobada o se decida que no es necesaria',	'El técnico debe preguntar a la administración local al tramitar los permisos ordinarios',	1,	5),
+(32,	'02.12',	'Compras en general',	5,	'Compras de material de obra',	'Se registran los pedidos y albaranes.',	1,	6),
+(33,	'02.13',	'Contratac. Medios aux.',	3,	'Alquiler de medios auxiliares de carga, izado, andamios o plataformas',	'Se registran los pedidos.',	1,	6),
+(34,	'02.25',	'PRL Responsable en obra',	1,	'Nombramiento de nuestro responsable en obra',	'Se registran los nombramientos',	1,	7),
+(35,	'02.26',	'PRL Seguimiento',	14,	'Seguimientos de acciones de PRL',	'Se registran incidencias o quejas',	1,	7),
+(36,	'04.41',	'Puesta en Marcha',	1,	'Puesta en marcha de la instalación. Pruebas, ajustes',	'Anotar las incidencias posibles',	1,	9),
+(37,	'05.3',	'Visado de Proyecto',	2,	'Visado de proyecto, si no lo está aún',	'Archivar en su sitio, comunicar',	2,	10),
+(38,	'02.14',	'Subcontratación',	5,	'Se define la relación y el contrato con las empresas subcontratadas.',	'Documentar las comunicaciones y las negociaciones',	1,	6),
+(39,	'02.23',	'PRL Eval. de medios mecánicos',	1,	'Se requiere documentación a las empresas proveedoras de plataformas, medios de izado de cargas, etc..',	'Documentar comunicaciones.',	1,	7),
+(40,	'01.6',	'D. Subcontratacion M.O.',	1,	'Se ha de aprobar si hay subcontrata de mano de obra',	'En caso de ser negado, se anotan los detalles.\r\nEn caso de ser aprobado se documentan las comunicaciones y los acuerdos.',	1,	5),
+(41,	'00.35',	'Aprobación de ampliaciones',	1,	'Si surgen ampliaciones y tienen que ver directamente con el posible contrato, por ejemplo, líneas de vida, se han de dirimir en esta acción',	'Hay que documentar las comunicaciones y ofertas.',	0,	3);
 
 DROP TABLE IF EXISTS `tecnicos`;
 CREATE TABLE `tecnicos` (
@@ -283,5 +710,14 @@ CREATE TABLE `valores` (
   CONSTRAINT `valores_ibfk_2` FOREIGN KEY (`proyecto_id`) REFERENCES `proyectos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `valores` (`id`, `parametro_id`, `proyecto_id`, `valor`, `siguiente`) VALUES
+(48,	1,	2,	'[Completar]',	'0'),
+(49,	2,	2,	'[Completar]',	'0'),
+(52,	5,	2,	'[Completar]',	'0'),
+(53,	6,	2,	'[Completar]',	'0'),
+(54,	7,	2,	'[Completar]',	'0'),
+(55,	8,	2,	'[Completar]',	'0'),
+(56,	3,	2,	'[Completar]',	'0'),
+(57,	4,	2,	'[Completar]',	'0');
 
--- 2023-06-02 20:48:28
+-- 2023-06-03 08:42:41
