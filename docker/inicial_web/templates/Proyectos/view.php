@@ -5,7 +5,7 @@
  */
 ?>
 
-<?= $this->Html->script('node_modules/frappe-gantt/dist/frappe-gantt.min.js') ?>
+<?= $this->Html->script('frappe-gantt/dist/frappe-gantt.min.js') ?>
 <?= $this->Html->css('frappe-gantt.css') ?>
 
 <div class="row">
